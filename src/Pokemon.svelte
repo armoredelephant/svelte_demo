@@ -5,13 +5,12 @@
         const { results } = await response.json()
         const pokemon = await Promise.all(results.map(({url}) => fetch(url).then(res => res.json())))
         if (pokemon) return pokemon;
-        
         throw new Error("bad call");
     }
 </script>
   
-  <div class="Pokemon">
-    <h2>Pokemon</h2>
+<div class="Pokemon">
+<h2>Pokemon</h2>
     {#await fetchPokemon()}
         <p>loading</p>
     {:then pokemon}
@@ -19,10 +18,10 @@
         <div style="display: inline-block; padding: 0 2rem;">
             <h2>{name}</h2>
             <img src={sprites.front_default} alt={name}>
-          </div>
+            </div>
         {/each}
     {:catch} 
         <p>error</p>
     {/await}
-  </div>
+</div>
   
